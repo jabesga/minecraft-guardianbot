@@ -1,27 +1,44 @@
 import web
 import requests
-token = "168379145:AAHGio5lnirJ3Rcxa09BkU2MuQJz84JSMGI"
+import sqlite3 as lite
+import ConfigParser
+
+config = ConfigParser.RawConfigParser()
+config.read('settings.ini')
+BOT_TOKEN = config.get('Bot', 'token')
 
 def sendMessage(chat_id, text):
         response = requests.post(
-            url='https://api.telegram.org/bot{0}/{1}'.format(token, 'sendMessage'), data={'chat_id': chat_id, 'text': text}).json()
+            url='https://api.telegram.org/bot{0}/{1}'.format(BOT_TOKEN, 'sendMessage'), data={'chat_id': chat_id, 'text': text}).json()
+
+class index:
+    def POST(self):
+        data = web.input()
+
+        con = lite.connect('data.db')
+        with con:
+            cur = con.cursor()    
+            cur.execute("SELECT * FROM Users WHERE username=?", (data.username,))
+            user_data = cur.fetchone()
+            if user_data:
+                if data.north != '0':
+                    sendMessage(user_data[1], "Se ha detectado un intruso por la entrada norte")
+                if data.east != '0':
+                    sendMessage(user_data[1], "Se ha detectado un intruso por la entrada este")
+                if data.west != '0':
+                    sendMessage(user_data[1], "Se ha detectado un intruso por la entrada oeste")
+                if data.south != '0':
+                    sendMessage(user_data[1], "Se ha detectado un intruso por la entrada sur")
+            else:
+                print "There's not user in DB"
 
 urls = (
   '/', 'index'
 )
 
-class index:
-    def GET(self):
-        return "Hello, world!"
-    def POST(self):
-        data = web.input()
-        sendMessage(2816783, data.text)
-        return "Hello, POST STRANGER!"        
-
-
-if __name__ == "__main__": 
+if __name__ == "__main__":
     app = web.application(urls, globals())
     app.run()
 
-
-# r = requests.post("http://localhost:8080", data={'text': "Que tal"})
+# REQUESTS SAMPLE
+# requests.post("http://localhost:8080", data={'username': "USERNAME", 'north': 0, 'east': 0, 'west': 0, 'south': 0})
