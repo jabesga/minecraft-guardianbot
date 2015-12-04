@@ -22,13 +22,13 @@ class index:
             user_data = cur.fetchone()
             if user_data:
                 if data.north != '0':
-                    sendMessage(user_data[1], "Se ha detectado un intruso por la entrada norte")
+                    sendMessage(user_data[1], "¡HAN LLEGADO A LA SALA DE ORDENADORES! ¡EL SISTEMA ESTÁ EN PELIGRO!")
                 if data.east != '0':
-                    sendMessage(user_data[1], "Se ha detectado un intruso por la entrada este")
+                    sendMessage(user_data[1], "¡ALERTA DE INTRUSO! ¡TU TESORO ESTÁ EN PELIGRO!")
                 if data.west != '0':
-                    sendMessage(user_data[1], "Se ha detectado un intruso por la entrada oeste")
+                    sendMessage(user_data[1], "¡ALERTA DE INTRUSO! ¡ALGUIEN HA ENTRADO POR LA TERRAZA!")
                 if data.south != '0':
-                    sendMessage(user_data[1], "Se ha detectado un intruso por la entrada sur")
+                    sendMessage(user_data[1], "¡Se ha detectado un intruso por la puerta principal!")
             else:
                 print "There's not user in DB"
 
