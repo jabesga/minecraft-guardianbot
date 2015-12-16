@@ -42,7 +42,6 @@ class Bot(object):
                 print 'Unsuccessful request. Error code: %s. %s' % (response['error_code'], response['description'])        
                 
     
-
     def run(self):
         while True:
             message = self.checkUpdates()
