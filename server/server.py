@@ -39,7 +39,7 @@ class index:
         con = lite.connect('data.db')
         with con:
             cur = con.cursor()
-            cur.execute("SELECT * FROM Users WHERE username=?", (data.username,)) 
+            cur.execute("SELECT * FROM Users WHERE username=?", (data.username,))
             user_exists = cur.fetchone() # Get user data if exists
             username_id = user_exists[1] # Get username id
 
