@@ -7,4 +7,6 @@ Change the name of the "settings_sample.ini" file to "settings.ini". Write your 
 ## Server
 Execute the "init_server.bat" file located in the root directory 
 ## Bot
-Execute the "init_bot.bat" file located in the root directory 
+Execute the "init_bot.bat" file located in the root directory
+## Hard drive scripts
+Place the .lua scripts inside a hard drive of the OpenComputers Mod (\world\opencomputers\<HARD_DRIVE_ID>\)
