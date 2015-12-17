@@ -7,8 +7,6 @@ import requests
 import sqlite3 as lite
 import ConfigParser
 import os
-import signal
-import sys
 
 __author__ = "Jon Ander Besga"
 __license__ = "MIT"
@@ -66,11 +64,7 @@ class index:
             else:
                 print "\tThis user is not in the DB"
 
-def signal_handler(signal, frame):
-    print('Bot stopped. Ctrl+C pressed!')
-    sys.exit(0)
 
-signal.signal(signal.SIGINT, signal_handler)
 urls = (
   '/', 'index'
 )
